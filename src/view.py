@@ -1,9 +1,10 @@
 import random
 import tkinter
+from i_controller import i_controller
 
 class View:
-    def __init__(self):  #TODO add i_controller as argument
-        #self.i_controller = i_controller
+    def __init__(self, i_controller): 
+        self.i_controller = i_controller
         self.app_window = tkinter.Tk()
         self.app_window.title("crazy calculator")
         self.panel = tkinter.Text(self.app_window, height=2, width=30)
@@ -20,9 +21,3 @@ class View:
         for i in range(10):
             B = tkinter.Button(self.app_window, text = i, command = lambda i=i: self.show_on_panel(i))
             B.pack()
-
-
-# if __name__ == "__main__":
-#     view1 = View()
-#     view1.show_calculator()
-
