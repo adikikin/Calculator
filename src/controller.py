@@ -4,10 +4,10 @@ from view import View
 class Controller(i_controller):
     def __init__(self):
         #self.model = Model()
-        self.view = View()
+        self.view = View(self)
 
     def start(self):
-        pass
+        self.view.show_calculator()
 
     def add_digit(self, digit):
         pass
