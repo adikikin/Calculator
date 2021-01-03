@@ -9,9 +9,14 @@ class View:
         self.app_window.title("crazy calculator")
         self.panel = tkinter.Text(self.app_window, height=2, width=30)
         self.panel.pack()
+        self.digits_frame = tkinter.Frame(self.app_window)
+        self.digits_frame.pack()
         self.__create_buttons()
 
-    def show_on_panel(self, some_text):
+    def show_input_on_panel(self, some_text):
+        self.panel.insert(tkinter.END, some_text)
+
+    def show_output_on_panel(self, some_text):
         self.panel.insert(tkinter.END, some_text)
 
     def show_calculator(self):
@@ -19,5 +24,5 @@ class View:
 
     def __create_buttons(self):
         for i in range(10):
-            B = tkinter.Button(self.app_window, text = i, command = lambda i=i: self.show_on_panel(i))
-            B.pack()
+            B = tkinter.Button(self.digits_frame, text = i, command = lambda i=i: self.show_input_on_panel(i), height=1, width=4)
+            B.grid(row=(i//3),  column=i%3)
