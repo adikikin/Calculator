@@ -14,18 +14,14 @@ class View:
         self.__create_digit_buttons()
         self.__create_operator_buttons()
 
-    def show_input_on_panel(self, some_text):
-        self.panel.insert(END, some_text)
-
-
-    def show_output_on_panel(self, some_text):
+    def show_on_panel(self, some_text):
         self.panel.insert(END, some_text)
 
     def show_calculator(self):
         self.app_window.mainloop()
 
     def __receive_input(self, usr_input):
-        self.show_input_on_panel(usr_input)
+        self.show_on_panel(usr_input)
         if usr_input in range(10):
             self.i_controller.add_digit(usr_input)
         elif usr_input in self.operators_list:
