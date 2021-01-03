@@ -1,4 +1,5 @@
 import random
+import copy
 from tkinter import *
 from i_controller import i_controller
 
@@ -9,6 +10,7 @@ class View:
         self.app_window.title("crazy calculator")
         self.panel = Text(self.app_window, height=2, width=30)
         self.panel.pack()
+        self.operators_list = ["+", "-", "x", "/"] 
         self.__create_digit_buttons()
         self.__create_operator_buttons()
 
@@ -26,7 +28,7 @@ class View:
         self.show_input_on_panel(usr_input)
         if usr_input in range(10):
             self.i_controller.add_digit(usr_input)
-        elif usr_input in ["+", "-", "x", "/"]:
+        elif usr_input in self.operators_list:
             self.i_controller.add_operator(usr_input)
         elif usr_input == "C":
             self.i_controller.restart()
@@ -48,6 +50,6 @@ class View:
     def __create_operator_buttons(self):
         self.operators_frame = Frame(self.app_window)
         self.operators_frame.pack(side=RIGHT, padx=10)
-        operators = ["+", "-", "x", "/", "=", "C"]
-        self.__create_buttons(operators, self.operators_frame, 2)
-
+        buttons_list = copy.deepcopy(self.operators_list) + ["=", "C"]
+        self.__create_buttons(buttons_list, self.operators_frame, 2)
+        print(self.operators_list)
