@@ -48,4 +48,3 @@ class View:
         self.operators_frame.pack(side=RIGHT, padx=10)
         buttons_list = copy.deepcopy(self.operators_list) + ["=", "C"]
         self.__create_buttons(buttons_list, self.operators_frame, 2)
-        print(self.operators_list)
