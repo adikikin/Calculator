@@ -18,7 +18,7 @@ class State(ABC):
         "*" : operator.mul,
         "/" : operator.truediv,
         }
-    next_state = "Start"
+    _next_state_name = "Start"
 
     @abstractmethod
     def operate(self, item):
