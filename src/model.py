@@ -1,4 +1,8 @@
-class Model:
+from state_factory import State_factory
+from state import State
+from i_model import I_model
+
+class Model(I_model):
     def __init__(self):
         pass
         # self.state_factory = State_factory()
