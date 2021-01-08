@@ -1,8 +1,13 @@
 import operator 
 from abc import ABC, abstractmethod
-
+from i_state_factory import I_state_factory
+from i_model import I_model
 
 class State(ABC):
+    @abstractmethod
+    def __init__(self, i_state_factory, i_model):
+        pass
+    
     _first_operand = 0    #in the future: expression tree
     _second_operand = 0
     _operator = ""
@@ -19,5 +24,6 @@ class State(ABC):
     def operate(self, item):
         pass
     
-    # def get_next_state(self):
-    #     pass
+    @abstractmethod
+    def get_next_state_name(self):
+        pass
