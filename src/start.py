@@ -1,4 +1,5 @@
 from state import State
+from states_enum import States_enum
 
 class Start(State):
     def __init__(self, i_state_factory, i_model):
@@ -9,16 +10,16 @@ class Start(State):
     def operate(self, item):
         self.__reset_expression()
         if item in ["=", "C"]:
-            State._next_state_name = "Start"
+            State._next_state_name = States_enum.START
             return_val = None               
         elif item in ["x", "/", "+"]:
-            return_val = State._next_state_name = "Error"
+            return_val = State._next_state_name = States_enum.ERROR
         else:
             if item == "-":
                 State._sign *= -1
-            State._next_state_name = "Storing_digits_for_first_operand"
+            State._next_state_name = States_enum.STORING_DIGITS_FOR_FIRST_OPERAND
             return_val = item
-        new_state = self.i_factory.create_state_from("Start")
+        new_state = self.i_factory.create_state_from(States_enum.START)
         self.i_model.change_state(new_state)
         return return_val
 
