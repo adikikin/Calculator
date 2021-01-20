@@ -15,10 +15,10 @@ class State_factory(I_state_factory):
         self.state_dict = {
             States_enum.START : Start(self, self.i_model),
             States_enum.ERROR : Error(self, self.i_model),
-            States_enum.STORING_DIGITS_FOR_FIRST_OPERAND: Storing_digits_for_first_operand(self, self.i_model),
-            States_enum.STORING_OPERAND: Storing_operand(self, self.i_model),
-            States_enum.STORING_DIGITS_FOR_SECOND_OPERAND: Storing_digits_for_second_operand(self, self.i_model),
             States_enum.STORING_OPERATOR:Storing_operator(self, self.i_model),
+            States_enum.STORING_OPERAND: Storing_operand(self, self.i_model),
+            States_enum.STORING_DIGITS_FOR_FIRST_OPERAND: Storing_digits_for_first_operand(self, self.i_model),
+            States_enum.STORING_DIGITS_FOR_SECOND_OPERAND: Storing_digits_for_second_operand(self, self.i_model),
         }
 
 
