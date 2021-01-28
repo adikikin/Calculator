@@ -10,7 +10,7 @@ class Start(State):
 
 
     def operate(self, item):
-        self.__reset_expression()
+        self._expression.reset_expression()
         if item in [Btns.EQUAL.value, Btns.CLEAR.value]: #"=", "C"
             State._next_state_name = States_enum.START
             return_val = None               
@@ -19,19 +19,14 @@ class Start(State):
             return_val = States_enum.ERROR.name
         else:
             if item == Btns.SUB.value:
-                State._sign *= -1
+                self._expression.flip_sign()
+            else:
+                self._expression.add_digit_to_first_operand(item)
             State._next_state_name = States_enum.STORING_DIGITS_FOR_FIRST_OPERAND
             return_val = item
         new_state = self.i_factory.create_state_from(self)
         self.i_model.change_state(new_state)
         return return_val
-
-
-    def __reset_expression(self):
-        State._first_operand = 0  
-        State._second_operand = 0
-        State._operator = ""
-        State._sign = 1
 
 
     def get_next_state_name(self):
