@@ -11,17 +11,18 @@ class Start(State):
 
     def operate(self, item):
         self.__reset_expression()
-        if item in [Btns.EQUAL.value, Btns.CLEAR.value]:
+        if item in [Btns.EQUAL.value, Btns.CLEAR.value]: #"=", "C"
             State._next_state_name = States_enum.START
             return_val = None               
         elif item in [Btns.MUL.value, Btns.DIV.value, Btns.ADD.value]:
-            return_val = State._next_state_name = States_enum.ERROR
+            State._next_state_name = States_enum.ERROR
+            return_val = States_enum.ERROR.name
         else:
             if item == Btns.SUB.value:
                 State._sign *= -1
             State._next_state_name = States_enum.STORING_DIGITS_FOR_FIRST_OPERAND
             return_val = item
-        new_state = self.i_factory.create_state_from(States_enum.START)
+        new_state = self.i_factory.create_state_from(self)
         self.i_model.change_state(new_state)
         return return_val
 
