@@ -24,11 +24,21 @@ class Expression:
     def flip_sign(self):
         self.sign *= -1
     
-    def add_digit_to_first_operand(self, digit):
-        if self.first_operand == 0:
-            self.first_operand = digit
+
+    def __add_digit(self, operand, digit):
+        if operand == 0:
+            operand = digit
         else:
-            self.first_operand *= 10 
-            self.first_operand += digit
+            operand *= 10 
+            operand += digit
+
+    def add_digit_to_first_operand(self, digit):
+        self.__add_digit(self.first_operand, digit)
+
+    def add_digit_to_second_operand(self, digit):
+        self.__add_digit(self.second_operand, digit)
+
+    
+
 
     #def operate(self):
