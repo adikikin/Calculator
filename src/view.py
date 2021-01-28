@@ -24,11 +24,9 @@ class View:
         self.panel.delete('1.0', END)
 
     def __receive_input(self, usr_input):
-        self.show_on_panel(usr_input) #here now for tests only (should be called be controller)
         if usr_input in range(10):
             self.i_controller.add_digit(usr_input)
         elif usr_input == Buttons_Enum.CLEAR.value:
-            self.clear_panel() #here now for tests only (should be called be controller)
             self.i_controller.restart()
         elif usr_input == Buttons_Enum.EQUAL.value:
             self.i_controller.evaluate()
