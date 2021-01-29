@@ -1,33 +1,54 @@
 from state import State
+from expression import Expression
 from states_enum import States_enum
 from buttons_enum import Buttons_Enum as Btns
 
 
 class Start(State):
-    def __init__(self, i_state_factory, i_model):
+    def __init__(self, i_state_factory, i_model, expression):
         self.i_factory = i_state_factory
         self.i_model = i_model
+        self.expression = expression
+        self.next_state_enum = None
 
 
-    def operate(self, item):
-        State._expression.reset_expression()
-        if item in [Btns.EQUAL.value, Btns.CLEAR.value]: #"=", "C"
-            State._next_state_name = States_enum.START
-            return_val = None               
-        elif item in [Btns.MUL.value, Btns.DIV.value, Btns.ADD.value]:
-            State._next_state_name = States_enum.ERROR
-            return_val = States_enum.ERROR.name
+    def add_digit(self, digit):
+        self.expression.add_digit_to_first_operand(digit)
+        self.next_state_enum = States_enum.STORING_DIGITS_FOR_FIRST_OPERAND
+        self.__update_model_with_new_state()
+        return digit
+
+
+    def add_operator(self, operator):
+        if operator == Btns.SUB.value:
+            self.expression.flip_sign()
+            self.next_state_enum = States_enum.STORING_DIGITS_FOR_FIRST_OPERAND
+            return_val = operator
         else:
-            if item == Btns.SUB.value:
-                State._expression.flip_sign()
-            else:
-                State._expression.add_digit_to_first_operand(item)
-            State._next_state_name = States_enum.STORING_DIGITS_FOR_FIRST_OPERAND
-            return_val = item
-        new_state = self.i_factory.create_state_from(self)
-        self.i_model.change_state(new_state)
+            self.next_state_enum = States_enum.ERROR
+            return_val = States_enum.ERROR.name
+        self.__update_model_with_new_state()
         return return_val
 
 
+    def evaluate(self):
+        self.expression.reset_expression()
+        return None 
+
+
+    def restart(self):
+        self.expression.reset_expression()
+        return None 
+                      
+
     def get_next_state_name(self):
-        return self._next_state_name
+        return self.next_state_enum
+
+
+    def get_expression(self):
+        return self.expression
+
+
+    def __update_model_with_new_state(self):
+        new_state = self.i_factory.create_state_from(self)
+        self.i_model.change_state(new_state)
