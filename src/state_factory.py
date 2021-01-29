@@ -1,7 +1,7 @@
 from storing_digits_for_first_operand import Storing_digits_for_first_operand
 from storing_digits_for_second_operand import Storing_digits_for_second_operand
-from storing_operator import Storing_operator
-from storing_operand import Storing_operand
+from stored_operator import Stored_operator
+from stored_operand import Stored_operand
 from i_state_factory import I_state_factory
 from states_enum import States_enum
 from i_model import I_model
@@ -15,8 +15,8 @@ class State_factory(I_state_factory):
         self.state_dict = {
             States_enum.START : Start(self, self.i_model),
             States_enum.ERROR : Error(self, self.i_model),
-            States_enum.STORING_OPERATOR:Storing_operator(self, self.i_model),
-            States_enum.STORING_OPERAND: Storing_operand(self, self.i_model),
+            States_enum.STORED_OPERATOR:Stored_operator(self, self.i_model),
+            States_enum.STORED_OPERAND: Stored_operand(self, self.i_model),
             States_enum.STORING_DIGITS_FOR_FIRST_OPERAND: Storing_digits_for_first_operand(self, self.i_model),
             States_enum.STORING_DIGITS_FOR_SECOND_OPERAND: Storing_digits_for_second_operand(self, self.i_model),
         }
