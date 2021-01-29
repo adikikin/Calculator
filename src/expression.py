@@ -29,16 +29,20 @@ class Expression:
         if operand == 0:
             operand = digit
         else:
-            operand *= 10 
-            operand += digit
+            operand = operand * 10 + digit
+        return operand
 
     def add_digit_to_first_operand(self, digit):
-        self.__add_digit(self.first_operand, digit)
+        self.first_operand = self.__add_digit(self.first_operand, digit)
 
     def add_digit_to_second_operand(self, digit):
-        self.__add_digit(self.second_operand, digit)
+        self.second_operand = self.__add_digit(self.second_operand, digit)
 
-    
+    def get_first_operand(self):
+        return self.first_operand * self.sign
 
+    def add_operator(self, operator):
+        assert operator in self.ops
+        self.operator = operator
 
     #def operate(self):
