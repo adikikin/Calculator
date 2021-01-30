@@ -7,8 +7,17 @@ class Model(I_model):
         self.state_factory = State_factory(self)
         self.state = self.state_factory.create_state()
 
-    def operate(self, item):
-        return self.state.operate(item)
+    def add_digit(self, digit):
+        return self.state.add_digit(digit)
+
+    def add_operator(self, operator):
+        return self.state.add_operator(operator)
+
+    def evaluate(self):
+        return self.state.evaluate()
+
+    def restart(self):
+        return self.state.restart()
 
     def change_state(self, state):
         self.state = state
