@@ -5,11 +5,10 @@ from i_model import I_model
 class State(ABC):
     @abstractmethod
     def __init__(self, i_state_factory, i_model, expression):
-        pass
-
-    # @abstractmethod
-    # @classmethod
-    # def create_from(cls, state)
+        self.i_factory = i_state_factory
+        self.i_model = i_model
+        self.expression = expression
+        self.next_state_enum = None
 
 
     @abstractmethod
@@ -28,10 +27,23 @@ class State(ABC):
     def restart(self):
         pass
     
-    @abstractmethod
     def get_next_state_enum(self):
-        pass
+        return self.next_state_enum
 
-    @abstractmethod
+
     def get_expression(self):
-        pass
+        return self.expression
+
+
+    def update_expression_and_model(self, derived, 
+                                    expression_func, 
+                                    next_state_enum, item=None):
+        expression_func(item)
+        self.next_state_enum = next_state_enum
+        self.update_model_with_next_state(derived)
+        return item
+
+
+    def update_model_with_next_state(self, derived):
+        new_state = self.i_factory.create_state_from(derived)
+        self.i_model.change_state(new_state)
