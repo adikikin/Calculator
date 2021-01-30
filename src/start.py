@@ -32,16 +32,14 @@ class Start(State):
 
 
     def evaluate(self):
-        self.expression.reset_expression()
         return None 
 
 
     def restart(self):
-        self.expression.reset_expression()
         return None 
                       
 
-    def get_next_state_name(self):
+    def get_next_state_enum(self):
         return self.next_state_enum
 
 
