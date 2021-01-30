@@ -2,15 +2,24 @@ from state import State
 from states_enum import States_enum
 
 class Storing_digits_for_second_operand(State):
-    def __init__(self, i_state_factory, i_model):
-        self.i_factory = i_state_factory
-        self.i_model = i_model
+    def __init__(self, i_state_factory, i_model, expression):
+        State.i_factory = i_state_factory
+        State.i_model = i_model
+        State.expression = expression
+        State.next_state_enum = None
 
-
-    def operate(self, item):
+    def add_digit(self, digit):
         pass
 
 
-    def get_next_state_name(self):
+    def add_operator(self, operator):
         pass
-        # return self._next_state_name
+
+
+    def evaluate(self):
+        pass
+
+
+    def restart(self):
+        pass
+ 
