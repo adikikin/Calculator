@@ -12,19 +12,20 @@ class Controller(i_controller):
         self.view.show_calculator()
 
     def add_digit(self, digit):
-        result = self.model.operate(digit)
+        result = self.model.add_digit(digit)
         self.view.show_on_panel(result)
 
     def add_operator(self, operator):
-        pass
+        result = self.model.add_operator(operator)
+        self.view.show_on_panel(result)
 
     def evaluate(self):
         self.view.clear_panel()
-        result = self.model.operate(Buttons_Enum.EQUAL.value) 
+        result = self.model.evaluate() 
         if result:
             self.view.show_on_panel(result)
 
 
     def restart(self):
-        assert self.model.operate(Buttons_Enum.CLEAR.value) == None
+        assert self.model.restart() == None
         self.view.clear_panel()
