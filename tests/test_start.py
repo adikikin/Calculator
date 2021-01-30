@@ -7,51 +7,53 @@ from start import Start
 from model import Model
 from state_factory import State_factory
 from states_enum import States_enum
-
+from expression import Expression
+from storing_digits_for_first_operand import Storing_digits_for_first_operand
+from error import Error
+from buttons_enum import Buttons_Enum as Btns
 
 class test_start(unittest.TestCase):
-    def test_fresh_start_get_next_state_name(self):
-        model = Model()
+    def test_add_digit(self):
+        model = Model()       
         factory = State_factory(model)
-        start1 = Start(factory, model)
-        start1.operate("C")
-        self.assertEqual(start1.get_next_state_name(), States_enum.START)
-        start1.operate("=")
-        self.assertEqual(start1.get_next_state_name(), States_enum.START)
-        start1.operate("/")
-        self.assertEqual(start1.get_next_state_name(), States_enum.ERROR)
-        start1.operate("x")
-        self.assertEqual(start1.get_next_state_name(), States_enum.ERROR)
-        start1.operate("+")
-        self.assertEqual(start1.get_next_state_name(), States_enum.ERROR)
-        start1.operate("-")
-        self.assertEqual(start1.get_next_state_name(), States_enum.STORING_DIGITS_FOR_FIRST_OPERAND)
-        start1.operate("8")
-        self.assertEqual(start1.get_next_state_name(), States_enum.STORING_DIGITS_FOR_FIRST_OPERAND)
-
-
-    def test_return_val(self):
-        model = Model()
+        exp = Expression()
+        start1 = Start(factory,model, exp)
+        result = start1.add_digit("4")
+        self.assertEqual(start1.get_next_state_enum(), States_enum.STORING_DIGITS_FOR_FIRST_OPERAND)
+        self.assertEqual(result, "4")
+        self.assertIsInstance(model.state, Storing_digits_for_first_operand)
+    
+    def __test_operator(self, operator):
+        model = Model()       
         factory = State_factory(model)
-        start1 = Start(factory, model)
-        self.assertEqual(start1.operate("8"), "8")
-        self.assertEqual(start1.operate("-"), "-")
-        self.assertEqual(start1.operate("C"), None)
-        self.assertEqual(start1.operate("x"), "ERROR")
-        self.assertEqual(start1.operate("="), None)
-        self.assertEqual(start1.operate("/"), "ERROR")
-        self.assertEqual(start1.operate("+"), "ERROR")
+        exp2 = Expression()
+        strt = Start(factory, model, exp2)
+        result = strt.add_operator(operator)
+        self.assertEqual(strt.get_next_state_enum(), States_enum.ERROR)
+        self.assertEqual(result, States_enum.ERROR.name)
+        self.assertIsInstance(model.state, Error)
 
-
-
-
-
+    def test_mul_add_div(self):
+        for op in [Btns.MUL.value, Btns.ADD.value, Btns.DIV.value]:
+            self.__test_operator(op)
+    
+    def test_sub(self):
+        model = Model()       
+        factory = State_factory(model)
+        exp2 = Expression()
+        strt = Start(factory, model, exp2)
+        result = strt.add_operator(Btns.SUB.value)
+        self.assertEqual(strt.get_next_state_enum(), States_enum.STORING_DIGITS_FOR_FIRST_OPERAND)
+        self.assertEqual(result, Btns.SUB.value)
+        self.assertIsInstance(model.state, Storing_digits_for_first_operand)
+        self.assertEqual(exp2.sign, -1)
 
 
 if __name__ == "__main__":
     ts1 = test_start()
-    ts1.test_fresh_start_get_next_state_name()
-    ts1.test_return_val()
+    ts1.test_add_digit()
+    ts1.test_mul_add_div()
+    ts1.test_sub()
 
 
 
