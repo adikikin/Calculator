@@ -5,11 +5,11 @@ Calculator is a desktop app that preforms simple arithmetic operations (multipli
 ## Design
 Calculator is using MVC architecture. The Model component is implementing the state machine logic with State design pattern and State Factory.
 
-##installation
+## installation
 ```bash
 git clone https://github.com/adikikin/Calculator
 ```
-##run
+## run
 ```bash
 python3 run.py
 ```
