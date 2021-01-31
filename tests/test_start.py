@@ -19,7 +19,7 @@ class test_start(unittest.TestCase):
         exp = Expression()
         start1 = Start(factory,model, exp)
         result = start1.add_digit("4")
-        self.assertEqual(start1.get_next_state_enum(), States_enum.STORING_DIGITS_FOR_FIRST_OPERAND)
+        # self.assertEqual(start1.get_next_state_enum(), States_enum.STORING_DIGITS_FOR_FIRST_OPERAND)
         self.assertEqual(result, "4")
         self.assertIsInstance(model.state, Storing_digits_for_first_operand)
     
@@ -29,7 +29,7 @@ class test_start(unittest.TestCase):
         exp2 = Expression()
         strt = Start(factory, model, exp2)
         result = strt.add_operator(operator)
-        self.assertEqual(strt.get_next_state_enum(), States_enum.ERROR)
+        # self.assertEqual(strt.get_next_state_enum(), States_enum.ERROR)
         self.assertEqual(result, States_enum.ERROR.name)
         self.assertIsInstance(model.state, Error)
 
@@ -43,7 +43,7 @@ class test_start(unittest.TestCase):
         exp2 = Expression()
         strt = Start(factory, model, exp2)
         result = strt.add_operator(Btns.SUB.value)
-        self.assertEqual(strt.get_next_state_enum(), States_enum.STORING_DIGITS_FOR_FIRST_OPERAND)
+        # self.assertEqual(strt.get_next_state_enum(), States_enum.STORING_DIGITS_FOR_FIRST_OPERAND)
         self.assertEqual(result, Btns.SUB.value)
         self.assertIsInstance(model.state, Storing_digits_for_first_operand)
         self.assertEqual(exp2.sign, -1)

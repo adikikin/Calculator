@@ -35,15 +35,15 @@ class State(ABC):
         return self.expression
 
 
-    def update_expression_and_model(self, derived, 
+    def update_expression_and_model(self,
                                     expression_func, 
                                     next_state_enum, item=None):
         expression_func(item)
         self.next_state_enum = next_state_enum
-        self.update_model_with_next_state(derived)
+        self.update_model_with_next_state()
         return item
 
 
-    def update_model_with_next_state(self, derived):
-        new_state = self.i_factory.create_state_from(derived)
+    def update_model_with_next_state(self):
+        new_state = self.i_factory.create_state_from(self)
         self.i_model.change_state(new_state)

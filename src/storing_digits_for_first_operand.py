@@ -11,24 +11,24 @@ class Storing_digits_for_first_operand(State):
 
 
     def add_digit(self, digit):
-        return State.update_expression_and_model(self, self, 
+        return State.update_expression_and_model(self, 
                                                  State.expression.add_digit_to_first_operand, 
                                                  States_enum.STORING_DIGITS_FOR_FIRST_OPERAND,
                                                  digit)
 
     def add_operator(self, operator):
-        return State.update_expression_and_model(self, self, 
+        return State.update_expression_and_model(self, 
                                                  State.expression.add_operator, 
                                                  States_enum.STORED_OPERATOR,
                                                  operator)
         
     def restart(self):
-        return State.update_expression_and_model(self, self,
+        return State.update_expression_and_model(self,
                                                  State.expression.reset_expression, 
                                                  States_enum.STORED_OPERATOR)
 
 
     def evaluate(self):
         State.next_state_enum = States_enum.STORED_OPERAND
-        State.update_model_with_next_state(self, self)
+        State.update_model_with_next_state(self)
         return State.expression.get_first_operand()

@@ -13,10 +13,11 @@ class Start(State):
 
 
     def add_digit(self, digit):
-        State.expression.add_digit_to_first_operand(digit)
-        State.next_state_enum = States_enum.STORING_DIGITS_FOR_FIRST_OPERAND
-        State.update_model_with_next_state(self, self)
-        return digit
+        return State.update_expression_and_model(self, 
+                                                 State.expression.add_digit_to_first_operand,
+                                                 States_enum.STORING_DIGITS_FOR_FIRST_OPERAND,
+                                                 digit)
+
 
 
     def add_operator(self, operator):
@@ -27,7 +28,7 @@ class Start(State):
         else:
             State.next_state_enum = States_enum.ERROR
             return_val = States_enum.ERROR.name
-        State.update_model_with_next_state(self, self)
+        State.update_model_with_next_state(self)
         return return_val
 
 
