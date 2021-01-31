@@ -1,5 +1,5 @@
 import operator 
-from buttons_enum import Buttons_Enum as Btns
+from src.buttons_enum import Buttons_Enum as Btns
 
 #in the future: expression tree
 class Expression:

@@ -1,16 +1,14 @@
 import unittest
-import sys 
-sys.path.append('/home/adi/Calculator/src')
 
-from state import State
-from start import Start
-from model import Model
-from state_factory import State_factory
-from states_enum import States_enum
-from expression import Expression
-from storing_digits_for_first_operand import Storing_digits_for_first_operand
-from error import Error
-from buttons_enum import Buttons_Enum as Btns
+from src.state import State
+from src.start import Start
+from src.model import Model
+from src.state_factory import State_factory
+from src.states_enum import States_enum
+from src.expression import Expression
+from src.storing_digits_for_first_operand import Storing_digits_for_first_operand
+from src.error import Error
+from src.buttons_enum import Buttons_Enum as Btns
 
 class test_start(unittest.TestCase):
     def test_add_digit(self):

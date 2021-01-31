@@ -1,7 +1,6 @@
 import sys
-sys.path.append('/home/adi/Calculator/src')
 
-from view import View
+from src.view import View
 
 class i_controller:
     pass

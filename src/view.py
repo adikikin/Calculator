@@ -1,8 +1,8 @@
 import random
 import copy
 from tkinter import Tk, Text, Frame, LEFT, RIGHT, END, Button
-from i_controller import i_controller
-from buttons_enum import Buttons_Enum
+from src.i_controller import i_controller
+from src.buttons_enum import Buttons_Enum
 
 class View:
     def __init__(self, i_controller): 

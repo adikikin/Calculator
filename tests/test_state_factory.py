@@ -1,12 +1,10 @@
 import unittest
-import sys
-sys.path.append('/home/adi/Calculator/src')
 
-from state_factory import State_factory
-from model import Model
-from start import Start
-from error import Error
-
+from src.state_factory import State_factory
+from src.model import Model
+from src.start import Start
+from src.error import Error
+# from expression import Expression
 
 class Test_factory(unittest.TestCase):
     mdl = Model()
@@ -17,7 +15,7 @@ class Test_factory(unittest.TestCase):
         self.assertIsInstance(state, Start)
     
     # def test_create_from(self):
-       
+    #    start = Start(factory, mdl, )
 
 if __name__ == "__main__":
     tst = Test_factory()
