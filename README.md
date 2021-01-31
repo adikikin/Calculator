@@ -2,5 +2,14 @@
 
 Calculator is a desktop app that preforms simple arithmetic operations (multiplication, division, subtraction and addition) by the user's choice.
 
-# Design
+## Design
 Calculator is using MVC architecture. The Model component is implementing the state machine logic with State design pattern and State Factory.
+
+##installation
+```bash
+git clone https://github.com/adikikin/Calculator
+```
+##run
+```bash
+python3 run.py
+```
