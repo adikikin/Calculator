@@ -7,11 +7,15 @@ class Controller(i_controller):
     def __init__(self):
         self.model = Model()
         self.view = View(self)
+        self.result_was_shown = False
 
     def start(self):
         self.view.show_calculator()
 
     def add_digit(self, digit):
+        if self.result_was_shown:
+            self.view.clear_panel()
+            self.result_was_shown = False
         result = self.model.add_digit(digit)
         self.view.show_on_panel(result)
 
@@ -24,6 +28,7 @@ class Controller(i_controller):
         result = self.model.evaluate() 
         if result:
             self.view.show_on_panel(result)
+            self.result_was_shown = True
 
 
     def restart(self):
