@@ -25,7 +25,8 @@ class Storing_digits_for_first_operand(State):
     def restart(self):
         return State.update_expression_and_model(self,
                                                  State.expression.reset_expression, 
-                                                 States_enum.START)
+                                                 States_enum.START,
+                                                 None)
 
 
     def evaluate(self):

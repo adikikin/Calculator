@@ -37,7 +37,7 @@ class State(ABC):
 
     def update_expression_and_model(self,
                                     expression_func, 
-                                    next_state_enum, item=None):
+                                    next_state_enum, item):
         if item == None:
             expression_func()
         else:
