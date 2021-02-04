@@ -9,17 +9,23 @@ class Error(State):
         State.next_state_enum = None
 
     def add_digit(self, digit):
-        pass
+        return State.update_expression_and_model(self, 
+                                                 State.expression.add_digit_to_first_operand,
+                                                 States_enum.STORING_DIGITS_FOR_FIRST_OPERAND,
+                                                 digit)
 
 
     def add_operator(self, operator):
-        pass
+        return States_enum.ERROR.name
 
 
     def evaluate(self):
-        pass
+        return States_enum.ERROR.name
 
 
     def restart(self):
-        pass
+        return State.update_expression_and_model(self,
+                                                 State.expression.reset_expression, 
+                                                 States_enum.START,
+                                                 None)
  
