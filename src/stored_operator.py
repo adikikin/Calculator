@@ -9,17 +9,27 @@ class Stored_operator(State):
         State.next_state_enum = None
 
     def add_digit(self, digit):
-        pass
+        return State.update_expression_and_model(self, 
+                                                 State.expression.add_digit_to_second_operand, 
+                                                 States_enum.STORING_DIGITS_FOR_SECOND_OPERAND,
+                                                 digit)
 
 
     def add_operator(self, operator):
-        pass
-
+        return State.update_expression_and_model(self, 
+                                                 State.expression.reset_expression, 
+                                                 States_enum.ERROR,
+                                                 None)
 
     def evaluate(self):
-        pass
+        #same functionallity as add_operator- state changes to ERROR
+        return self.add_operator(None) 
 
 
     def restart(self):
-        pass
+        return State.update_expression_and_model(self,
+                                                 State.expression.reset_expression, 
+                                                 States_enum.START,
+                                                 None)
+
  
