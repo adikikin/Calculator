@@ -1,6 +1,4 @@
 import unittest
-# import sys 
-# sys.path.append('/home/adi/Calculator/src')
 
 from src.state import State
 from src.start import Start
@@ -63,14 +61,21 @@ class test_stored_operand(unittest.TestCase):
         self.assertEqual(result, model.state.expression.get_first_operand())
         self.assertIsInstance(model.state, Stored_operand)
 
+    def test_add_digit_after_evaluation(self):
+        model = Model()       
+        factory = State_factory(model)
+        exp2 = Expression()
+        model.state.expression.first_operand = "8"
+        strt = Stored_operand(factory, model, exp2)
+        model.state = strt
+        result = strt.evaluate()
+        self.assertEqual(result, model.state.expression.get_first_operand())
+        result2 = strt.add_digit("5") 
+        self.assertEqual(result2, model.state.expression.get_first_operand())
 
 
 if __name__ == "__main__":
-    ts1 = test_stored_operand()
-    ts1.test_add_digit()
-    ts1.test_mul_add_div_sub()
-    ts1.test_start()
-    ts1.test_equal()
+    unittest.main()
 
 
 
