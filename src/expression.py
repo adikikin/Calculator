@@ -20,6 +20,7 @@ class Expression:
         self.second_operand = 0
         self.operator = None
         self.sign = 1
+
     
     def flip_sign(self):
         self.sign *= -1
@@ -41,8 +42,18 @@ class Expression:
     def get_first_operand(self):
         return self.first_operand * self.sign
 
+    #may throw ZeroDivisionError exception
     def add_operator(self, operator):
         assert operator in self.ops
+        if self.second_operand != 0:
+            assert self.operator != None
+            self.evaluate()
         self.operator = operator
+        
 
-    #def operate(self):
+    #may throw ZeroDivisionError exception
+    def evaluate(self):
+        assert self.operator in self.ops
+        self.first_operand = self.sign * self.ops[self.operator](self.first_operand, self.second_operand)
+        self.sign = 1
+        return self.first_operand
