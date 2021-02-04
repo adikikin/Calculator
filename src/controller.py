@@ -21,15 +21,18 @@ class Controller(i_controller):
         self.view.show_on_panel(result)
 
     def add_operator(self, operator):
+        if self.result_was_shown:
+            self.result_was_shown = False
         result = self.model.add_operator(operator)
         if result == States_enum.ERROR.name:
             self.view.clear_panel()
+            self.result_was_shown = True
         self.view.show_on_panel(result)
 
     def evaluate(self):
         self.view.clear_panel()
         result = self.model.evaluate() 
-        if result:
+        if result != None:
             self.view.show_on_panel(result)
             self.result_was_shown = True
 
@@ -37,3 +40,4 @@ class Controller(i_controller):
     def restart(self):
         assert self.model.restart() == None
         self.view.clear_panel()
+        self.result_was_shown = False
