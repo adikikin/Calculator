@@ -16,10 +16,12 @@ class Stored_operator(State):
 
 
     def add_operator(self, operator):
-        return State.update_expression_and_model(self, 
-                                                 State.expression.reset_expression, 
-                                                 States_enum.ERROR,
-                                                 None)
+        State.update_expression_and_model(self, 
+                                          State.expression.reset_expression, 
+                                          States_enum.ERROR,
+                                          None)
+        return States_enum.ERROR.name
+        
 
     def evaluate(self):
         #same functionallity as add_operator- state changes to ERROR
