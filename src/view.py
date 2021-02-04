@@ -10,6 +10,7 @@ class View:
         self.app_window = Tk()
         self.app_window.title("crazy calculator")
         self.panel = Text(self.app_window, height=2, width=30)
+        self.panel.bind("<Key>", lambda e: "break")
         self.panel.pack() 
         self.__create_digit_buttons()
         self.__create_operator_buttons()
