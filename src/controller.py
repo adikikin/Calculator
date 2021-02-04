@@ -2,6 +2,7 @@ from src.i_controller import i_controller
 from src.view import View
 from src.model import Model
 from src.buttons_enum import Buttons_Enum
+from src.states_enum import States_enum
 
 class Controller(i_controller):
     def __init__(self):
@@ -21,6 +22,8 @@ class Controller(i_controller):
 
     def add_operator(self, operator):
         result = self.model.add_operator(operator)
+        if result == States_enum.ERROR.name:
+            self.view.clear_panel()
         self.view.show_on_panel(result)
 
     def evaluate(self):
