@@ -56,4 +56,5 @@ class Expression:
         assert self.operator in self.ops
         self.first_operand = self.sign * self.ops[self.operator](self.first_operand, self.second_operand)
         self.sign = 1
+        self.second_operand = 0
         return self.first_operand
