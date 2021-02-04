@@ -45,10 +45,11 @@ class test_stored_operand(unittest.TestCase):
         exp2 = Expression()
         model.state.expression.first_operand = "8"
         strt = Stored_operand(factory, model, exp2)
+        model.state = strt
         result = strt.restart()
         self.assertEqual(result, None)
         self.assertIsInstance(model.state, Start)
-        self.assertEqual(model.state.expression.first_operand, "0")
+        self.assertEqual(model.state.expression.first_operand, 0)
 
 
     def test_equal(self):
@@ -57,6 +58,7 @@ class test_stored_operand(unittest.TestCase):
         exp2 = Expression()
         model.state.expression.first_operand = "8"
         strt = Stored_operand(factory, model, exp2)
+        model.state = strt
         result = strt.evaluate()
         self.assertEqual(result, model.state.expression.get_first_operand())
         self.assertIsInstance(model.state, Stored_operand)
