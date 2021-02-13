@@ -104,8 +104,10 @@ class Component_Factory:
     
 
 class Expression_tree:
-    def __init__(self, postfix_component_list):
+    def __init__(self):
         self.tree = []
+    
+    def build_tree(self, postfix_component_list):
         for i in postfix_component_list:
             if isinstance(i, Operator):
                 assert len(self.tree) > 1
@@ -119,4 +121,7 @@ class Expression_tree:
 
     def print_postorder(self):
         self.tree[0].print_component()
+    
+    def clear_tree(self): 
+        self.tree.clear()  
     
