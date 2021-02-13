@@ -13,29 +13,30 @@ class Expression:
         self.infix_exp = []
         self.factory = Component_Factory()
 
+
     def reset_expression(self):
         self.operand = 0  
         self.sign = 1
         self.tree.clear_tree()
         self.infix_exp.clear() 
     
+
     def flip_sign(self):
         self.sign *= -1
     
 
-    def __add_digit(self, operand, digit):
-        if operand == 0:
-            operand = digit
-        else:
-            operand = operand * 10 + digit
-        return operand
-
     def add_digit_to_operand(self, digit):
-        self.operand = self.__add_digit(self.operand, digit)
+        if self.operand == 0:
+            self.operand = digit
+        else:
+            self.operand = self.operand * 10 + digit
+        
 
+    def get_operand(self):
+        if len(self.infix_exp) == 0:
+            return self.operand * self.sign
+        return self.operand
 
-    def getoperand(self):
-        return self.operand * self.sign
 
     #may throw ZeroDivisionError exception
     def add_operator(self, operator):
