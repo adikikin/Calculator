@@ -4,7 +4,7 @@ from src.stored_operator import Stored_operator
 from src.stored_operand import Stored_operand
 from src.i_state_factory import I_state_factory
 from src.states_enum import States_enum
-from src.expression import Expression
+from src.expression_manager import Expression_manager
 from src.i_model import I_model
 from src.start import Start
 from src.error import Error
@@ -23,7 +23,7 @@ class State_factory(I_state_factory):
 
 
     def create_state(self):
-        return self.state_dict[States_enum.START](self, self.i_model, Expression())
+        return self.state_dict[States_enum.START](self, self.i_model, Expression_manager())
         
 
     def create_state_from(self, state):
