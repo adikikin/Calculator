@@ -81,6 +81,7 @@ class Div(Operator):
     def __init__(self, item):
         Operator.__init__(self,item)
 
+    #may throw ZeroDivisionError exception
     def operate(self):
         assert self.left != None and self.right != None
         return self.left.operate() / self.right.operate()
