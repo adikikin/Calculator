@@ -1,7 +1,6 @@
 from src.state import State
 from src.expression_manager import Expression_manager
-from src.states_enum import States_enum
-from src.buttons_enum import Buttons_Enum as Btns
+from src.common import Buttons_Enum as Btns, States_enum 
 
 
 class Start(State):

@@ -1,8 +1,8 @@
 from src.i_controller import i_controller
 from src.view import View
 from src.model import Model
-from src.buttons_enum import Buttons_Enum
-from src.states_enum import States_enum
+from src.common import Buttons_Enum, States_enum
+
 
 class Controller(i_controller):
     def __init__(self):

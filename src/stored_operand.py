@@ -1,5 +1,5 @@
 from src.state import State
-from src.states_enum import States_enum
+from src.common import States_enum
 
 class Stored_operand(State):
     def __init__(self, i_state_factory, i_model, expression):

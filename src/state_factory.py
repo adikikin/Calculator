@@ -3,7 +3,7 @@ from src.storing_digits_for_second_operand import Storing_digits_for_second_oper
 from src.stored_operator import Stored_operator
 from src.stored_operand import Stored_operand
 from src.i_state_factory import I_state_factory
-from src.states_enum import States_enum
+from src.common import States_enum
 from src.expression_manager import Expression_manager
 from src.i_model import I_model
 from src.start import Start

@@ -1,4 +1,4 @@
-from src.buttons_enum import Buttons_Enum as btn
+from src.common import Buttons_Enum as btn
 from collections import deque
 
 class TooShortExpression(Exception): pass

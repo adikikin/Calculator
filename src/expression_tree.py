@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.buttons_enum import Buttons_Enum as Btns
+from src.common import Buttons_Enum as Btns
 
 class Component(ABC):
     @abstractmethod
