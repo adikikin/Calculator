@@ -1,5 +1,5 @@
 from src.state import State
-from src.expression import Expression
+from src.expression_manager import Expression_manager
 from src.states_enum import States_enum
 from src.buttons_enum import Buttons_Enum as Btns
 
@@ -14,7 +14,7 @@ class Start(State):
 
     def add_digit(self, digit):
         return State.update_expression_and_model(self, 
-                                                 State.expression.add_digit_to_first_operand,
+                                                 State.expression.add_digit_to_operand,
                                                  States_enum.STORING_DIGITS_FOR_FIRST_OPERAND,
                                                  digit)
 

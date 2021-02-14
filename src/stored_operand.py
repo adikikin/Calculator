@@ -11,7 +11,7 @@ class Stored_operand(State):
     def add_digit(self, digit):
         State.expression.reset_expression()
         return State.update_expression_and_model(self, 
-                                                 State.expression.add_digit_to_first_operand, 
+                                                 State.expression.add_digit_to_operand, 
                                                  States_enum.STORING_DIGITS_FOR_FIRST_OPERAND,
                                                  digit)
 

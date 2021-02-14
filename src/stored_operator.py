@@ -10,7 +10,7 @@ class Stored_operator(State):
 
     def add_digit(self, digit):
         return State.update_expression_and_model(self, 
-                                                 State.expression.add_digit_to_second_operand, 
+                                                 State.expression.add_digit_to_operand, 
                                                  States_enum.STORING_DIGITS_FOR_SECOND_OPERAND,
                                                  digit)
 
