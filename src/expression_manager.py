@@ -4,7 +4,7 @@ from src.infix_to_postfix_converter import Infix_to_postfix_converter
 from src.expression_tree import Expression_tree, Component_Factory
 
 #in the future: expression tree
-class Expression:
+class Expression_manager:
     def __init__(self):
         self.converter = Infix_to_postfix_converter()
         self.tree = Expression_tree()
@@ -38,7 +38,6 @@ class Expression:
         return self.operand
 
 
-    #may throw ZeroDivisionError exception
     def add_operator(self, operator):
         assert operator in [i.value for i in Btns]
         assert self.operand != None
