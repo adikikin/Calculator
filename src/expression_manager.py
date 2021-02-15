@@ -54,4 +54,6 @@ class Expression_manager:
         self.tree.build_tree(postfix_components)
         self.operand = self.sign * self.tree.evaluate()
         self.sign = 1
+        self.tree.clear_tree()
+        self.infix_exp.clear()
         return self.operand

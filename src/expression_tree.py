@@ -117,6 +117,7 @@ class Expression_tree:
             self.tree.append(i)
 
     def evaluate(self):
+        print(len(self.tree))
         assert len(self.tree) == 1
         return self.tree[0].operate()
 
