@@ -32,7 +32,7 @@ class Start(State):
 
 
     def evaluate(self):
-        return State.expression.get_first_operand()
+        return State.expression.get_operand()
 
 
     def restart(self):

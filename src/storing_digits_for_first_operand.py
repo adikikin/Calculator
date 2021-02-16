@@ -32,4 +32,4 @@ class Storing_digits_for_first_operand(State):
     def evaluate(self):
         State.next_state_enum = States_enum.STORED_OPERAND
         State.update_model_with_next_state(self)
-        return State.expression.get_first_operand()
+        return State.expression.get_operand()

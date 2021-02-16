@@ -25,7 +25,7 @@ class Stored_operand(State):
 
 
     def evaluate(self):
-        return State.expression.get_first_operand()
+        return State.expression.get_operand()
          
 
 
